@@ -51,7 +51,7 @@
         </div>
         <div class="hero-visual">
           <div class="scene-topbar"><span>WORLD 01 <span class="scene-sep">/</span> THE AI LAB</span><span class="scene-live"><span class="signal" aria-hidden="true"></span> INTERACTIVE</span></div>
-          <div class="pixel-scene" id="pixelScene" tabindex="0" role="group" aria-label="ピクセルの研究所。左右ボタン、またはこのエリアで左右キーを押してキャラクターを動かせます">
+          <div class="pixel-scene" id="pixelScene" tabindex="0" role="group" aria-label="探索できるピクセル研究所。このエリアにフォーカスして左右キーかA・Dで移動し、ポータルに近づいてEまたはEnterでそのセクションに進みます">
             <svg class="world" viewBox="0 0 640 382" preserveAspectRatio="xMidYMid slice" role="img" aria-label="夜空、建物、研究所、月、木々が描かれたピクセルアートの世界">
               <rect width="640" height="382" fill="#203758"/>
               <g class="cloud-move cloud-move-a" fill="#314e73"><rect x="20" y="81" width="100" height="18"/><rect x="38" y="62" width="66" height="20"/><rect x="443" y="112" width="124" height="18"/><rect x="467" y="92" width="70" height="20"/></g>
@@ -88,14 +88,36 @@
               <g fill="#fbd67e"><rect x="42" y="319" width="18" height="5"/><rect x="155" y="319" width="18" height="5"/><rect x="476" y="319" width="18" height="5"/><rect x="586" y="319" width="18" height="5"/></g>
             </svg>
             <div class="avatar" id="avatar" aria-hidden="true"><div class="avatar-pixel hair"></div><div class="avatar-pixel face"></div><div class="avatar-pixel eyes"></div><div class="avatar-pixel jacket"></div><div class="avatar-pixel hand-left"></div><div class="avatar-pixel hand-right"></div><div class="avatar-pixel pants-left"></div><div class="avatar-pixel pants-right"></div><div class="avatar-shadow"></div></div>
-            <div class="scene-callout"><span class="callout-marker">!</span><span>WELCOME, PLAYER 01<br><small>YOUR ADVENTURE STARTS HERE</small></span></div>
+            <div class="scene-portals" role="group" aria-label="研究所の行き先">
+              <button type="button" class="scene-portal portal-quests" data-zone="projects" aria-label="クエストエリアに移動"><span class="portal-symbol" aria-hidden="true">⚑</span><span>QUESTS</span></button>
+              <button type="button" class="scene-portal portal-research" data-zone="research" aria-label="研究ラボに移動"><span class="portal-symbol" aria-hidden="true">◇</span><span>LAB</span></button>
+              <button type="button" class="scene-portal portal-profile" data-zone="about" aria-label="プレイヤープロフィールに移動"><span class="portal-symbol" aria-hidden="true">☻</span><span>PLAYER</span></button>
+            </div>
+            <div class="scene-callout" aria-live="polite" aria-atomic="true"><span class="callout-marker">!</span><span><span id="sceneHintTitle">LAB PORTAL READY</span><br><small id="sceneHintSubtitle">PRESS E TO ENTER</small></span></div>
             <div class="scene-ground-label">＜ AI LAB / WORKSHOP ＞</div>
           </div>
-          <div class="scene-controls"><span><span class="kbd">A</span> <span class="kbd">D</span> TO MOVE <span class="control-or">/</span> <span class="kbd">←</span> <span class="kbd">→</span></span><div class="control-buttons"><button type="button" id="moveLeft" aria-label="キャラクターを左へ動かす">◀</button><button type="button" id="moveRight" aria-label="キャラクターを右へ動かす">▶</button></div><span class="scene-progress"><span class="pulse-dot"></span> EXPLORE</span></div>
+          <div class="scene-controls">
+              <span class="scene-keyhelp"><span class="kbd">A</span> <span class="kbd">D</span> MOVE <span class="control-or">/</span> <span class="kbd">←</span> <span class="kbd">→</span></span>
+              <div class="scene-control-actions">
+                <span class="scene-nearest" id="nearestZone">NEAR: LAB</span>
+                <button type="button" class="enter-zone" id="enterZone" aria-label="近くのポータルに入る">E ENTER ↗</button>
+                <div class="control-buttons"><button type="button" id="moveLeft" aria-label="キャラクターを左へ動かす">◀</button><button type="button" id="moveRight" aria-label="キャラクターを右へ動かす">▶</button></div>
+              </div>
+            </div>
         </div>
       </div>
       <div class="hero-ticker" aria-hidden="true"><div class="ticker-content">＋ PYTHON ＋ AI AGENT ＋ LLM ＋ RUST ＋ MODEL EVALUATION ＋ MACHINE LEARNING ＋ CLOUD ＋ RESEARCH IN PROGRESS ＋ PYTHON ＋ AI AGENT ＋ LLM ＋ RUST ＋ MODEL EVALUATION ＋ MACHINE LEARNING ＋ CLOUD ＋</div></div>
     </section>
+    <aside class="adventure-strip" aria-label="このサイト内の探索記録">
+      <div class="shell adventure-inner">
+        <div class="adventure-intro"><span class="adventure-star" aria-hidden="true">✦</span><div><strong>EXPLORATION LOG</strong><small>このサイトの閲覧記録です。研究成果や技能レベルを示すものではありません。</small></div></div>
+        <div class="adventure-stats">
+          <div class="adventure-stat"><div><span>AREAS VISITED</span><strong id="zoneProgressText">0 / 3</strong></div><progress id="zoneProgress" max="3" value="0" aria-label="探索したエリア数"></progress></div>
+          <div class="adventure-stat"><div><span>QUESTS VIEWED</span><strong id="questProgressText">0 / 7</strong></div><progress id="questProgress" max="7" value="0" aria-label="技術詳細を閲覧した作品数"></progress></div>
+          <button type="button" class="adventure-reset" id="resetProgress" aria-label="このブラウザの探索記録だけをリセットする">↻ RESET</button>
+        </div>
+      </div>
+    </aside>
 
     <section class="section shell" id="projects" aria-labelledby="projectsTitle">
       <div class="section-head reveal"><div><div class="section-no">01 <span>//</span> SELECT YOUR QUEST</div><h2 id="projectsTitle"><span class="pfx-star">✦</span> PROJECT <span class="heading-accent">QUESTS</span></h2><p class="section-desc">挑戦した開発プロジェクトを選んで、技術的な課題・アプローチをチェック。</p></div><div class="head-corner"><span>QUEST LOG</span><strong><span id="questCount">07</span> / 07</strong></div></div>
