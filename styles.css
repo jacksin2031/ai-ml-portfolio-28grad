@@ -269,7 +269,8 @@ linear-gradient(180deg,#1a2a43 0%,#172139 100%);border-bottom:6px solid #0e1a30}
 .toast{position:fixed;bottom:27px;right:25px;z-index:90;color:#edfff7;background:#183952;border:3px solid var(--mint);box-shadow:5px 5px 0 #10162b;font:900 11px Consolas,monospace;padding:12px 20px;opacity:0;transform:translateY(20px);pointer-events:none;transition:opacity .25s,transform .25s}
 .toast.show{opacity:1;transform:translateY(0)}
 .reveal{transition:opacity .5s,translate .5s;opacity:1;translate:0}
-.js-ready .reveal:not(.revealed){opacity:0;translate:0 16px}
+.js-ready .reveal:not(.revealed){opacity:1;translate:0}
+.js-ready .reveal.revealed{animation:revealup .6s ease both}
 .recruiter-mode .hero-visual,.recruiter-mode .hero-ticker{display:none}
 .recruiter-mode .hero-layout{grid-template-columns:minmax(0,1fr);padding:48px 0}
 .recruiter-mode .hero h1{font-size:clamp(44px,6vw,70px)}
@@ -278,6 +279,7 @@ linear-gradient(180deg,#1a2a43 0%,#172139 100%);border-bottom:6px solid #0e1a30}
 .recruiter-mode .quest-art{height:105px}
 .recruiter-mode .quest-card.featured .quest-art{height:auto}
 .recruiter-mode .reveal{opacity:1;translate:0}
+@keyframes revealup{from{opacity:.65;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 @keyframes blink{50%{opacity:0}}
 @keyframes signal{50%{opacity:.4}}
 @keyframes twinkle{50%{opacity:.32}}
