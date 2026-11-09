@@ -228,6 +228,7 @@ function markQuestViewed(questId){
 }
 document.getElementById('resetProgress').addEventListener('click',()=>{
   visitedAreas.clear();viewedQuests.clear();persistProgress();updateProgress();
+  try{history.replaceState(null,'',location.pathname+location.search)}catch(_error){}
   showToast('EXPLORATION LOG RESET');
 });
 window.addEventListener('hashchange',()=>{
