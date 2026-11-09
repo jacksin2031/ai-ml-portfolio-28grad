@@ -448,6 +448,8 @@ linear-gradient(180deg,#1a2a43 0%,#172139 100%);border-bottom:6px solid #0e1a30}
 .quest-card.viewed{border-color:#3a8b76}
 .viewed-flag{font:900 10px Consolas,monospace;color:#207f6d;border:1px solid #9dd8bf;background:#def7e8;padding:3px 6px;white-space:nowrap}
 .recruiter-mode .adventure-strip{display:none}
+.player-card h3 span{display:block;margin-top:6px;line-height:1.5;letter-spacing:.01em}
+.hero-name{overflow-wrap:anywhere}
 @media(max-width:1200px){
  .adventure-inner{flex-wrap:wrap}
  .adventure-stats{justify-content:space-between;width:100%}
