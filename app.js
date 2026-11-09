@@ -262,13 +262,21 @@ function updateScene(){
   sceneSubtitle.textContent=nearestPortal?'PRESS E / ENTER':'MOVE TO A PORTAL';
   portalButtons.forEach(btn=>btn.classList.toggle('active',btn.dataset.zone===nearestPortal?.id));
 }
+let slimeMotionTimer;
+function bounceSlime(movingDirection=0){
+  if(movingDirection)avatar.style.setProperty('--facing',movingDirection<0?'-1':'1');
+  avatar.classList.remove('walking','hopping');
+  void avatar.offsetWidth; // replay squash → stretch → jump → land
+  avatar.classList.add(movingDirection?'walking':'hopping');
+  clearTimeout(slimeMotionTimer);
+  slimeMotionTimer=setTimeout(()=>avatar.classList.remove('walking','hopping'),450);
+}
 function moveAvatar(delta){
   avatarX=Math.min(87,Math.max(8,avatarX+delta));
-  avatar.classList.remove('walking');
-  void avatar.offsetWidth;
-  avatar.classList.add('walking');
+  bounceSlime(delta);
   updateScene();
 }
+function hopAvatar(){bounceSlime(0)}
 function enterPortal(){
   if(!nearestPortal)return false;
   const target=document.getElementById(nearestPortal.id);
@@ -282,11 +290,13 @@ function enterPortal(){
 }
 document.getElementById('moveLeft').addEventListener('click',()=>moveAvatar(-7));
 document.getElementById('moveRight').addEventListener('click',()=>moveAvatar(7));
+document.getElementById('hopButton').addEventListener('click',hopAvatar);
 enterButton.addEventListener('click',enterPortal);
 portalButtons.forEach(btn=>btn.addEventListener('click',()=>{
   const portal=portals.find(p=>p.id===btn.dataset.zone);
   if(!portal)return;
   avatarX=portal.x;
+  bounceSlime(0);
   updateScene();
   enterPortal();
 }));
@@ -294,6 +304,7 @@ scene.addEventListener('keydown',event=>{
   const key=event.key.toLowerCase();
   if(event.key==='ArrowLeft'||key==='a'){event.preventDefault();moveAvatar(-7)}
   else if(event.key==='ArrowRight'||key==='d'){event.preventDefault();moveAvatar(7)}
+  else if((key===' '||key==='spacebar')&&!event.target.closest('button')){event.preventDefault();hopAvatar()}
   else if((key==='e'||event.key==='Enter')&&!event.target.closest('button')){event.preventDefault();enterPortal()}
 });
 updateScene();
