@@ -1,25 +1,56 @@
-# AI / ML Engineer Portfolio — 28卒
+# Jack Sin — PIXEL AI LAB
 
-日本就職向け AI エンジニア／機械学習エンジニア・ポートフォリオ。
+日本の **28卒 AIエンジニア／機械学習エンジニア** 向けポートフォリオ。
 
-## 表示方法
+**公開URL:** https://jacksin2031.github.io/ai-ml-portfolio-28grad/
 
-`index.html` を開くと動作します。外部 CSS、JavaScript、フォント、API キーを必要としません。
+## コンセプト
 
-## GitHub Pages に公開
+「AIをつくり、評価し、使える形へ。」
 
-公開先: https://jacksin2031.github.io/ai-ml-portfolio-28grad/
+履歴書やエントリーシートからアクセスする採用担当の方にも、技術に関心がある方にも見やすい、ピクセルアート＋ゲームUIの静的サイトです。研究中の項目は **研究テーマとして** 掲載し、モデルの性能や製品化を保証していません。
 
-ソース: https://github.com/jacksin2031/ai-ml-portfolio-28grad
+## ページ構成
 
-GitHub Pages は `main` ブランチの `/(root)` から公開しています。`index.html` を更新し `main` にコミットすると、自動で再デプロイされます。
+- **Title Screen / AI Lab:** オリジナルSVGの研究所、操作できるキャラクター
+- **Project Quests:** 7つの開発・研究プロジェクト、分類フィルター、詳細ダイアログ
+- **Research Tech Tree:** モデル開発の自動化、LLMの長期記憶、AIの評価設計
+- **Skill Inventory:** 技術経験・今後の学習テーマ（架空のレベル数値は付けません）
+- **Player Profile:** 公開可能なプロフィール・GitHubリンク
+- **Quick View:** 装飾的なゲームシーンを省いた簡潔な表示に切替
 
-## 公開前の確認事項
+## 操作
 
-- プロフィールには Jack Sin（シン）、28卒の就職希望、JLPT N1、デジタルコンテンツ関連科目の履修歴、公開 GitHub を記載しています。
-- 学位・所属区分、個人メールアドレス、電話番号、住所は未掲載です。就職応募時の書類で別途確認してください。
-- 個人の担当範囲、公開可能なプロジェクト URL/画像は未検証。
-- ZeroTrainAI / Aria / NeuralMemoryEngine は研究方向のみ。研究成果や製品化を保証しません。
-- 他の既存 GitHub Pages のルート `index.html` を上書きしないこと。
+- **START EXPLORING:** プロジェクトへスクロール
+- 研究所の左右ボタン、または研究所をフォーカスして左右キー／A・D：ピクセルキャラクターを移動
+- **VIEW QUEST DETAILS:** 技術詳細ダイアログ。Escで閉じる
+- Tech Tree ノード：研究内容を切り替え
+- **QUICK VIEW:** 装飾を省いた閲覧モード
+- スマートフォン：折りたたみナビ
+- 動きを減らす設定：アニメーションを最小限に抑える
 
-Generated for portfolio review on 2026-11-08.
+## 実装
+
+ビルド不要。外部ライブラリ・外部フォント不要。個人APIキーを含めません。
+
+| ファイル | 役割 |
+|---|---|
+| index.html | セマンティックなページ構造・オリジナルピクセルSVG |
+| styles.css | ピクセルゲーム風テーマ、レスポンシブ、アニメーション、印刷用 |
+| app.js | Quest／Modal／Tech Tree／Avatar／Quick View |
+| favicon.svg | オリジナルピクセルfavicon |
+| .nojekyll | GitHub Pages 用設定 |
+
+## デプロイ
+
+GitHub Pages の main ブランチ、/(root) からデプロイ。
+
+リンク先にある非公開研究コード、モデル重み、個人記憶データ等は公開していません。既存の他リポジトリには変更を加えません。
+
+## 記載内容の注意
+
+- 氏名：Jack Sin（シン）。日本語：JLPT N1（118/180）。
+- 28卒は就職活動対象として表示します。未確認の学位や大学の在籍区分は記載しません。
+- ZeroTrainAI、Aria、NeuralMemoryEngine は研究開発中です。未達成の実験結果を合格実績として記載しません。
+- 主要プロジェクトの個人担当範囲・測定データ・追加スクリーンショットは、裏付けを確認できた段階で追記します。
+- 私的なメールアドレス、電話番号、住所、API認証情報は掲載しません。
