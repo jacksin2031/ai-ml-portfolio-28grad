@@ -89,7 +89,6 @@ linear-gradient(180deg,#1a2a43 0%,#172139 100%);border-bottom:6px solid #0e1a30}
 .avatar-shadow{position:absolute;bottom:-3px;left:4px;width:32px;height:5px;background:#17243b99;z-index:-1}
 .avatar.walking{animation:avatarwalk .22s steps(2,end) 2}
 .scene-callout{position:absolute;top:25%;left:11%;display:flex;align-items:center;gap:9px;padding:9px 12px;background:#fff9df;color:#15283e;border:3px solid #132744;box-shadow:4px 4px 0 #101f34;z-index:4;font:900 9px/1.6 Consolas,monospace}
-.callout-marker{font-size:21px;color:#db7057}
 .scene-callout small{font:800 8px Consolas,monospace;color:#62717e}
 .scene-ground-label{position:absolute;right:13px;bottom:10px;color:#b7e8dc;font:900 9px Consolas,monospace;letter-spacing:.08em;text-shadow:2px 2px #11283e;z-index:4}
 .scene-controls{display:flex;justify-content:space-between;align-items:center;gap:9px;background:#13243e;color:#94b4c0;min-height:43px;padding:5px 10px;font-size:9px;font-weight:800}
@@ -510,12 +509,6 @@ linear-gradient(180deg,#1a2a43 0%,#172139 100%);border-bottom:6px solid #0e1a30}
   transform-origin:center;
 }
 .avatar.slime-avatar.walking .slime-shadow,.avatar.slime-avatar.hopping .slime-shadow{animation:slime-shadow-hop .44s ease both}
-.slime-alert{
-  position:absolute;top:5px;right:-5px;font:1000 23px/1 "Arial Black",Consolas,monospace;
-  color:#fc5b64;text-shadow:2px 0 #142138,-2px 0 #142138,0 2px #142138,0 -2px #142138;
-  transform:rotate(12deg);
-  animation:slime-alert-float 1.8s ease-in-out infinite;
-}
 .portrait-character.slime-portrait{
   position:absolute;width:137px;height:145px;bottom:15px;left:50%;
   transform:translateX(-50%);display:grid;align-items:end;
@@ -555,16 +548,11 @@ linear-gradient(180deg,#1a2a43 0%,#172139 100%);border-bottom:6px solid #0e1a30}
   0%,100%{transform:translateY(11px) scaleX(1);opacity:.8}
   50%{transform:translateY(11px) scaleX(.57);opacity:.4}
 }
-@keyframes slime-alert-float{
-  0%,100%{transform:rotate(12deg) translateY(0)}
-  50%{transform:rotate(8deg) translateY(-4px)}
-}
 @media(max-width:900px){
   .avatar.slime-avatar{width:64px;height:68px}
 }
 @media(max-width:700px){
   .avatar.slime-avatar{width:51px;height:55px;bottom:10.6%}
-  .slime-alert{font-size:18px;right:-5px;top:1px}
   .hop-control{font-size:9px;padding-inline:5px}
   .scene-controls{flex-wrap:wrap;row-gap:4px}
   .scene-control-actions{flex-wrap:wrap;justify-content:flex-end}
@@ -575,6 +563,31 @@ linear-gradient(180deg,#1a2a43 0%,#172139 100%);border-bottom:6px solid #0e1a30}
   .scene-control-actions{width:100%;justify-content:space-between}
 }
 @media(prefers-reduced-motion:reduce){
-  .slime-body,.slime-portrait .slime-art,.slime-alert{animation:none!important}
+  .slime-body,.slime-portrait .slime-art{animation:none!important}
   .avatar.slime-avatar{transition:none!important}
+}
+
+/* ambient scene motion (decorative; transform/opacity only) */
+.leaf-layer{pointer-events:none}
+.leaf{opacity:0;animation:leaf-drift var(--d,26s) linear var(--delay,0s) infinite;will-change:transform,opacity}
+@keyframes leaf-drift{
+ 0%{opacity:0;transform:translate(0,0) rotate(0)}
+ 8%{opacity:.8}
+ 25%{transform:translate(calc(var(--dx)*.45 + 14px),calc(var(--dy)*.25)) rotate(calc(var(--r)*.25))}
+ 50%{transform:translate(calc(var(--dx)*.4 - 12px),calc(var(--dy)*.5)) rotate(calc(var(--r)*.5))}
+ 75%{transform:translate(calc(var(--dx)*.85 + 10px),calc(var(--dy)*.75)) rotate(calc(var(--r)*.75))}
+ 92%{opacity:.8}
+ 100%{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(var(--r))}
+}
+.sign-halo{animation:sign-halo 5.2s ease-in-out infinite alternate}
+.sign-glow{animation:sign-glow 3.6s ease-in-out infinite alternate}
+.sign-text{animation:sign-text 4.4s ease-in-out infinite alternate}
+@keyframes sign-halo{from{opacity:0}to{opacity:.16}}
+@keyframes sign-glow{from{opacity:.05}to{opacity:.55}}
+@keyframes sign-text{from{opacity:.86}to{opacity:1}}
+@media(max-width:640px){.leaf-layer>g:nth-child(n+5){display:none}}
+@media(prefers-reduced-motion:reduce){
+  .leaf-layer{display:none}
+  .leaf,.sign-halo,.sign-glow,.sign-text{animation:none!important;will-change:auto}
+  .sign-text{opacity:1}
 }
