@@ -91,6 +91,7 @@ function openQuest(button){
     ? '研究開発中のため、現段階ではテーマと取り組み方を中心に紹介しています。性能保証・本番運用の主張ではありません。'
     : '技術資料・スクリーンショット・検証結果は、公開できる内容を確認したうえで順次追加する予定です。';
   dlg.showModal();
+  markQuestViewed(questId);
 }
 questButtons.forEach(button=>button.addEventListener('click',()=>openQuest(button)));
 modalClose.addEventListener('click',()=>dlg.close());
@@ -183,26 +184,118 @@ quickView.addEventListener('click',()=>{
   showToast(enabled?'QUICK VIEW ENABLED':'GAME VIEW ENABLED');
 });
 
+// Browsing progress is local-only, not a claim of skill level or research success.
+const progressKey='pixel-ai-lab-visit-progress-v2';
+const allowedAreas=['projects','research','about'];
+const allowedQuests=Object.keys(data);
+function readSavedProgress(){
+  try{
+    const value=JSON.parse(localStorage.getItem(progressKey)||'{}');
+    return {
+      areas:Array.isArray(value.areas)?value.areas.filter(x=>allowedAreas.includes(x)):[],
+      quests:Array.isArray(value.quests)?value.quests.filter(x=>allowedQuests.includes(x)):[]
+    };
+  }catch(_error){return {areas:[],quests:[]}}
+}
+const savedProgress=readSavedProgress();
+const visitedAreas=new Set(savedProgress.areas);
+const viewedQuests=new Set(savedProgress.quests);
+function persistProgress(){
+  try{localStorage.setItem(progressKey,JSON.stringify({areas:[...visitedAreas],quests:[...viewedQuests]}))}catch(_error){/* private mode / disabled storage */}
+}
+function updateProgress(){
+  document.getElementById('zoneProgressText').textContent=visitedAreas.size+' / 3';
+  document.getElementById('zoneProgress').value=visitedAreas.size;
+  document.getElementById('questProgressText').textContent=viewedQuests.size+' / 7';
+  document.getElementById('questProgress').value=viewedQuests.size;
+  document.querySelectorAll('.scene-portal').forEach(btn=>btn.classList.toggle('visited',visitedAreas.has(btn.dataset.zone)));
+  quests.forEach(card=>{
+    const btn=card.querySelector('[data-quest]');
+    const opened=btn&&viewedQuests.has(btn.dataset.quest);
+    card.classList.toggle('viewed',!!opened);
+    const existing=card.querySelector('.viewed-flag');
+    if(opened&&!existing)card.querySelector('.quest-top')?.append(textElement('span','✓ VIEWED','viewed-flag'));
+    if(!opened&&existing)existing.remove();
+  });
+}
+function markAreaVisited(zone){
+  if(!allowedAreas.includes(zone))return;
+  if(!visitedAreas.has(zone)){visitedAreas.add(zone);persistProgress();updateProgress()}
+}
+function markQuestViewed(questId){
+  if(!allowedQuests.includes(questId))return;
+  if(!viewedQuests.has(questId)){viewedQuests.add(questId);persistProgress();updateProgress()}
+}
+document.getElementById('resetProgress').addEventListener('click',()=>{
+  visitedAreas.clear();viewedQuests.clear();persistProgress();updateProgress();
+  showToast('EXPLORATION LOG RESET');
+});
+window.addEventListener('hashchange',()=>{
+  const hash=decodeURIComponent(location.hash.slice(1));
+  markAreaVisited(hash);
+});
+markAreaVisited(decodeURIComponent(location.hash.slice(1)));
+updateProgress();
+
 const avatar=document.getElementById('avatar');
 const scene=document.getElementById('pixelScene');
+const enterButton=document.getElementById('enterZone');
+const nearestLabel=document.getElementById('nearestZone');
+const sceneTitle=document.getElementById('sceneHintTitle');
+const sceneSubtitle=document.getElementById('sceneHintSubtitle');
+const portalButtons=[...document.querySelectorAll('.scene-portal')];
+const portals=[
+  {id:'projects',x:18,title:'QUESTS PORTAL',label:'QUESTS'},
+  {id:'research',x:50,title:'RESEARCH LAB',label:'LAB'},
+  {id:'about',x:82,title:'PLAYER PROFILE',label:'PLAYER'}
+];
 let avatarX=48;
+let nearestPortal=null;
+function updateScene(){
+  avatar.style.left=avatarX+'%';
+  const nearest=portals.reduce((a,b)=>Math.abs(avatarX-a.x)<=Math.abs(avatarX-b.x)?a:b);
+  nearestPortal=(Math.abs(avatarX-nearest.x)<=10)?nearest:null;
+  enterButton.disabled=!nearestPortal;
+  nearestLabel.textContent=nearestPortal?'NEAR: '+nearestPortal.label:'NO PORTAL';
+  sceneTitle.textContent=nearestPortal?nearestPortal.title:'EXPLORE THE WORLD';
+  sceneSubtitle.textContent=nearestPortal?'PRESS E / ENTER':'MOVE TO A PORTAL';
+  portalButtons.forEach(btn=>btn.classList.toggle('active',btn.dataset.zone===nearestPortal?.id));
+}
 function moveAvatar(delta){
   avatarX=Math.min(87,Math.max(8,avatarX+delta));
-  avatar.style.left=avatarX+'%';
   avatar.classList.remove('walking');
-  // restart simple walk animation
   void avatar.offsetWidth;
   avatar.classList.add('walking');
+  updateScene();
+}
+function enterPortal(){
+  if(!nearestPortal)return false;
+  const target=document.getElementById(nearestPortal.id);
+  if(!target)return false;
+  markAreaVisited(nearestPortal.id);
+  target.scrollIntoView({behavior:window.matchMedia?.('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
+  // Scroll to the destination without adding an extra history item.
+  try{history.replaceState(null,'','#'+nearestPortal.id)}catch(_error){}
+  showToast('AREA DISCOVERED: '+nearestPortal.label);
+  return true;
 }
 document.getElementById('moveLeft').addEventListener('click',()=>moveAvatar(-7));
 document.getElementById('moveRight').addEventListener('click',()=>moveAvatar(7));
+enterButton.addEventListener('click',enterPortal);
+portalButtons.forEach(btn=>btn.addEventListener('click',()=>{
+  const portal=portals.find(p=>p.id===btn.dataset.zone);
+  if(!portal)return;
+  avatarX=portal.x;
+  updateScene();
+  enterPortal();
+}));
 scene.addEventListener('keydown',event=>{
-  if(event.key==='ArrowLeft'||event.key.toLowerCase()==='a'){
-    event.preventDefault();moveAvatar(-7);
-  }else if(event.key==='ArrowRight'||event.key.toLowerCase()==='d'){
-    event.preventDefault();moveAvatar(7);
-  }
+  const key=event.key.toLowerCase();
+  if(event.key==='ArrowLeft'||key==='a'){event.preventDefault();moveAvatar(-7)}
+  else if(event.key==='ArrowRight'||key==='d'){event.preventDefault();moveAvatar(7)}
+  else if((key==='e'||event.key==='Enter')&&!event.target.closest('button')){event.preventDefault();enterPortal()}
 });
+updateScene();
 
 const toast=document.getElementById('toast');
 let toastTimeout=0;
