@@ -15,6 +15,28 @@
 <script src="app.js" defer></script>
 </head>
 <body>
+<svg class="slime-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" width="0" height="0" style="position:absolute;width:0;height:0;overflow:hidden">
+  <symbol id="pinkSlimeSprite" viewBox="0 0 72 74">
+    <g shape-rendering="crispEdges">
+      <path d="M13 33H11V28H10V16H11V9H14V6H17V4H21V6H24V10H26V15H28V17H30V13H32V10H34V7H36V3H39V10H41V15H43V18H45V15H48V12H54V14H57V18H59V26H57V32H61V35H64V40H66V48H65V54H63V59H59V63H54V66H48V68H24V67H17V65H12V61H9V56H7V50H7V41H9V35H11V33Z" fill="#1c1727"/>
+      <path d="M16 34H14V27H13V17H14V11H16V8H19V7H21V10H23V15H25V20H28V23H31V16H33V13H35V10H37V8H38V13H40V18H42V22H45V21H47V17H49V15H53V17H55V21H56V28H54V35H59V38H61V41H63V48H62V53H60V57H57V61H52V63H47V65H24V64H18V62H14V59H11V55H10V49H10V42H12V37H15V34Z" fill="#ffc1ce"/>
+      <path d="M16 34H14V27H13V17H14V11H16V8H19V7H21V10H23V15H25V20H28V23H31V16H33V13H35V10H37V8H38V13H40V18H42V22H45V21H47V17H49V15H53V17H55V21H56V28H54V35H59V38H61V41H63V48H62V53H60V57H57V61H52V63H47V65H24V64H18V62H14V59H11V55H10V49H10V42H12V37H15V34Z" fill="none" stroke="#251624" stroke-width="1.5" stroke-linejoin="miter" opacity=".42"/>
+      <path d="M17 12H19V15H21V20H22V28H20V26H18V21H17Z" fill="#f68d9f"/>
+      <path d="M50 20H52V18H54V24H53V29H51V31H49V28H50Z" fill="#f68d9f"/>
+      <rect x="17" y="16" width="2" height="7" fill="#ffd5d7" opacity=".9"/>
+      <rect x="51" y="21" width="2" height="5" fill="#ffd5d7" opacity=".7"/>
+      <path d="M14 43H16V39H18V37H20V35H22V33H23V36H21V39H19V43H17V46H15Z" fill="#ffe1df" opacity=".76"/>
+      <path d="M18 57H22V59H25V61H27V62H22V60H19Z" fill="#ffadb9" opacity=".8"/>
+      <rect x="25" y="43" width="5" height="10" fill="#1d1927"/>
+      <rect x="44" y="43" width="5" height="10" fill="#1d1927"/>
+      <rect x="26" y="43" width="2" height="3" fill="#45303b" opacity=".5"/>
+      <rect x="45" y="43" width="2" height="3" fill="#45303b" opacity=".5"/>
+      <rect x="17" y="53" width="3" height="6" fill="#f58b9e"/><rect x="22" y="55" width="2" height="6" fill="#f58b9e"/><rect x="25" y="58" width="2" height="4" fill="#f58b9e"/>
+      <rect x="50" y="53" width="3" height="6" fill="#f58b9e"/><rect x="47" y="56" width="2" height="5" fill="#f58b9e"/><rect x="44" y="58" width="2" height="4" fill="#f58b9e"/>
+      <path d="M30 56V59H32V61H35V59H37V61H40V59H42V56" fill="none" stroke="#1f1824" stroke-width="3" stroke-linejoin="miter" stroke-linecap="square"/>
+    </g>
+  </symbol>
+</svg>
 <a class="skip-link" href="#projects">プロジェクト一覧へ移動</a>
 <div class="page-wrap" id="top">
   <div class="hud-top">
@@ -22,7 +44,7 @@
   </div>
   <header class="site-header" id="siteHeader">
     <nav class="shell nav-shell" aria-label="メインナビゲーション">
-      <a class="brand" href="#top" aria-label="SIN LIK WANG ポートフォリオ トップ"><span class="brand-pixel" aria-hidden="true">J<span>S</span></span><span>SIN LIK WANG<span class="brand-suffix">.DEV</span><small>PIXEL AI LAB</small></span></a>
+      <a class="brand" href="#top" aria-label="SIN LIK WANG ポートフォリオ トップ"><span class="brand-pixel brand-slime" aria-hidden="true"><svg class="slime-art" viewBox="0 0 72 74" focusable="false"><use href="#pinkSlimeSprite"></use></svg></span><span>SIN LIK WANG<span class="brand-suffix">.DEV</span><small>PIXEL AI LAB</small></span></a>
       <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="navItems" aria-label="メニューを開く"><span></span><span></span><span></span></button>
       <div class="nav-items" id="navItems">
         <a href="#projects" class="nav-item">01 QUESTS</a>
@@ -51,7 +73,7 @@
         </div>
         <div class="hero-visual">
           <div class="scene-topbar"><span>WORLD 01 <span class="scene-sep">/</span> THE AI LAB</span><span class="scene-live"><span class="signal" aria-hidden="true"></span> INTERACTIVE</span></div>
-          <div class="pixel-scene" id="pixelScene" tabindex="0" role="group" aria-label="探索できるピクセル研究所。このエリアにフォーカスして左右キーかA・Dで移動し、ポータルに近づいてEまたはEnterでそのセクションに進みます">
+          <div class="pixel-scene" id="pixelScene" tabindex="0" role="group" aria-label="探索できるピクセル研究所。手足のないピンクのウサギスライムが跳ねて移動します。左右キーかA・Dで移動、Spaceでジャンプ、EまたはEnterでポータルに入ります">
             <svg class="world" viewBox="0 0 640 382" preserveAspectRatio="xMidYMid slice" role="img" aria-label="夜空、建物、研究所、月、木々が描かれたピクセルアートの世界">
               <rect width="640" height="382" fill="#203758"/>
               <g class="cloud-move cloud-move-a" fill="#314e73"><rect x="20" y="81" width="100" height="18"/><rect x="38" y="62" width="66" height="20"/><rect x="443" y="112" width="124" height="18"/><rect x="467" y="92" width="70" height="20"/></g>
@@ -87,7 +109,7 @@
               <g fill="#50757a"><rect x="0" y="342" width="38" height="9"/><rect x="72" y="353" width="41" height="8"/><rect x="136" y="340" width="39" height="8"/><rect x="203" y="361" width="46" height="8"/><rect x="287" y="349" width="52" height="8"/><rect x="376" y="356" width="40" height="8"/><rect x="455" y="339" width="55" height="9"/><rect x="551" y="353" width="47" height="8"/></g>
               <g fill="#fbd67e"><rect x="42" y="319" width="18" height="5"/><rect x="155" y="319" width="18" height="5"/><rect x="476" y="319" width="18" height="5"/><rect x="586" y="319" width="18" height="5"/></g>
             </svg>
-            <div class="avatar" id="avatar" aria-hidden="true"><div class="avatar-pixel hair"></div><div class="avatar-pixel face"></div><div class="avatar-pixel eyes"></div><div class="avatar-pixel jacket"></div><div class="avatar-pixel hand-left"></div><div class="avatar-pixel hand-right"></div><div class="avatar-pixel pants-left"></div><div class="avatar-pixel pants-right"></div><div class="avatar-shadow"></div></div>
+            <div class="avatar slime-avatar" id="avatar" aria-hidden="true"><span class="slime-shadow"></span><span class="slime-body"><svg class="slime-art" viewBox="0 0 72 74" focusable="false"><use href="#pinkSlimeSprite"></use></svg></span><span class="slime-alert">!</span></div>
             <div class="scene-portals" role="group" aria-label="研究所の行き先">
               <button type="button" class="scene-portal portal-quests" data-zone="projects" aria-label="クエストエリアに移動"><span class="portal-symbol" aria-hidden="true">⚑</span><span>QUESTS</span></button>
               <button type="button" class="scene-portal portal-research" data-zone="research" aria-label="研究ラボに移動"><span class="portal-symbol" aria-hidden="true">◇</span><span>LAB</span></button>
@@ -100,7 +122,7 @@
               <span class="scene-keyhelp"><span class="kbd">A</span> <span class="kbd">D</span> MOVE <span class="control-or">/</span> <span class="kbd">←</span> <span class="kbd">→</span></span>
               <div class="scene-control-actions">
                 <span class="scene-nearest" id="nearestZone">NEAR: LAB</span>
-                <button type="button" class="enter-zone" id="enterZone" aria-label="近くのポータルに入る">E ENTER ↗</button>
+                <button type="button" class="enter-zone" id="enterZone" aria-label="近くのポータルに入る">E ENTER ↗</button><button type="button" class="hop-control" id="hopButton" aria-label="史萊姆跳躍">↑ HOP</button>
                 <div class="control-buttons"><button type="button" id="moveLeft" aria-label="キャラクターを左へ動かす">◀</button><button type="button" id="moveRight" aria-label="キャラクターを右へ動かす">▶</button></div>
               </div>
             </div>
@@ -180,7 +202,7 @@
       <div class="shell">
         <div class="section-head reveal"><div><div class="section-no">04 <span>//</span> CHARACTER PROFILE</div><h2 id="aboutTitle"><span class="pfx-star">✦</span> PLAYER <span class="heading-accent">PROFILE</span></h2><p class="section-desc">このポートフォリオをつくっている人のこと。</p></div><div class="head-corner"><span>PLAYER FILE</span><strong>#0001</strong></div></div>
         <div class="profile-layout reveal">
-          <div class="player-card"><div class="player-card-head">PLAYER_ID: 0001 <span>★ ACTIVE</span></div><div class="portrait-frame"><div class="portrait-bg"><div class="portrait-character" aria-hidden="true"><span class="pc-hair"></span><span class="pc-face"></span><span class="pc-eyes"></span><span class="pc-body"></span><span class="pc-arms"></span><span class="pc-legs"></span></div></div><div class="portrait-caption">CHARACTER ICON / ORIGINAL</div></div><h3>SIN LIK WANG <span>（シンリクワン）</span></h3><p class="player-role">CLASS: AI / ML ENGINEER</p><div class="player-badges"><span>28卒</span><span>JLPT N1</span><span>BUILDER</span></div></div>
+          <div class="player-card"><div class="player-card-head">PLAYER_ID: 0001 <span>★ ACTIVE</span></div><div class="portrait-frame"><div class="portrait-bg"><div class="portrait-character slime-portrait" aria-hidden="true"><svg class="slime-art" viewBox="0 0 72 74" focusable="false"><use href="#pinkSlimeSprite"></use></svg></div></div><div class="portrait-caption">PINK SLIME / PIXEL CHARACTER</div></div><h3>SIN LIK WANG <span>（シンリクワン）</span></h3><p class="player-role">CLASS: AI / ML ENGINEER</p><div class="player-badges"><span>28卒</span><span>JLPT N1</span><span>BUILDER</span></div></div>
           <div class="profile-data"><div class="profile-data-head"><span>PROFILE.SAV</span><span class="save-icon">◆ SAVED</span></div><div class="profile-row"><span class="profile-key">NAME</span><strong>SIN LIK WANG（シンリクワン）</strong></div><div class="profile-row"><span class="profile-key">TARGET</span><strong>AIエンジニア / 機械学習エンジニア</strong></div><div class="profile-row"><span class="profile-key">JOB HUNT</span><strong>2028年卒向け新卒採用を志望</strong></div><div class="profile-row"><span class="profile-key">STUDIES</span><strong>デジタルハリウッド大学でデジタルコンテンツ関連科目を履修</strong></div><div class="profile-row"><span class="profile-key">LANGUAGES</span><strong>日本語：JLPT N1（118/180）<br>中国語（繁体字）</strong></div><div class="profile-row"><span class="profile-key">INTERESTS</span><strong>LLM / AI Agent / NLP / Model Evaluation</strong></div><div class="profile-message"><span class="message-cursor" aria-hidden="true">▶</span><p>「実装して終わり」ではなく、結果を確かめ、失敗から学び、改善を続けることを大切にしています。</p></div><a href="https://github.com/jacksin2031" target="_blank" rel="noopener noreferrer" class="pixel-button pixel-button-dark">↗ GITHUB PROFILE</a></div>
         </div>
       </div>

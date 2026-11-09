@@ -14,7 +14,7 @@
 
 ## ページ構成
 
-- **Title Screen / AI Lab:** オリジナルSVGの研究所。左右移動できるキャラクターと、QUESTS／LAB／PLAYERの3つのポータル
+- **Title Screen / AI Lab:** オリジナルSVGの研究所。提供されたピンクのウサギスライムをモチーフにした、手足のないピクセルキャラクターが跳ねながら移動。QUESTS／LAB／PLAYERの3つのポータル
 - **Project Quests:** 7つの開発・研究プロジェクト、分類フィルター、詳細ダイアログ
 - **Research Tech Tree:** モデル開発の自動化、LLMの長期記憶、AIの評価設計
 - **Skill Inventory:** 技術経験・今後の学習テーマ（架空のレベル数値は付けません）
@@ -26,6 +26,7 @@
 
 - **START EXPLORING:** プロジェクトへスクロール
 - 研究所の左右ボタン、または研究所をフォーカスして左右キー／A・D：ピクセルキャラクターを移動
+- Spaceキーまたは画面内のHOPボタン：その場でスライムがジャンプ（潰れる→伸びる→跳ねる→着地）
 - ポータルの近くでE／Enterを押すか、ポータルを直接クリック：QUESTS／LAB／PLAYERのエリアに移動
 - **VIEW QUEST DETAILS:** 技術詳細ダイアログ。Escで閉じる
 - Tech Tree ノード：研究内容を切り替え
@@ -39,8 +40,8 @@
 
 | ファイル | 役割 |
 |---|---|
-| index.html | セマンティックなページ構造・オリジナルピクセルSVG |
-| styles.css | ピクセルゲーム風テーマ、レスポンシブ、アニメーション、印刷用 |
+| index.html | セマンティックなページ構造・オリジナルピクセルSVGとウサギスライムの共有スプライト |
+| styles.css | ピクセルゲーム風テーマ、レスポンシブ、スライムのバウンドアニメーション、印刷用 |
 | app.js | Quest／Modal／Tech Tree／Avatar／Portals／Local Progress／Quick View |
 | favicon.svg | オリジナルピクセルfavicon |
 | .nojekyll | GitHub Pages 用設定 |
