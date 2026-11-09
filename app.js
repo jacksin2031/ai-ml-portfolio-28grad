@@ -121,25 +121,32 @@ filterBtns.forEach(button=>button.addEventListener('click',()=>{
 
 const researchTopics={
   model:{
-    num:'01 / 03',glyph:'◇',sub:'MODEL DEVELOPMENT',
+    num:'01 / 04',glyph:'◇',sub:'MODEL DEVELOPMENT',
     title:'AIモデル開発の自動化',
     intro:'自然言語で与えた目標を、モデル構造・データ・評価条件に落とし込み、試作から改善までを繰り返せる仕組みを研究しています。',
     focuses:['モデル構築','重み・構造の検討','ベースライン比較','再現性'],
     next:'独立した評価データや比較実験を通じて、評価可能な成果を整理していきます。関連プロジェクト：ZeroTrainAI。'
   },
   memory:{
-    num:'02 / 03',glyph:'◎',sub:'LONG-TERM MEMORY',
+    num:'02 / 04',glyph:'◎',sub:'LONG-TERM MEMORY',
     title:'LLMの長期記憶と個人化',
     intro:'対話履歴を単に長く渡すのではなく、継続的な記憶と個人への適応を実現する方法を模索しています。保存基準や潜在表現による情報保持も研究対象です。',
     focuses:['記憶の選別','潜在表現','想起と更新','本人同意'],
     next:'保存すべき内容の識別、誤記憶の抑制、時間の経過に伴う更新を検証します。関連プロジェクト：Aria / NeuralMemoryEngine。'
   },
   reliability:{
-    num:'03 / 03',glyph:'✳',sub:'TRUSTWORTHY AI',
+    num:'03 / 04',glyph:'✳',sub:'TRUSTWORTHY AI',
     title:'AIの信頼性と評価設計',
     intro:'日本語の否定・時制・話者の違いや、未知の質問に対する応答を適切に扱うため、誤りの種類を分けた評価と、根拠不足時の回答保留を検討しています。',
     focuses:['頑健性','未知情報の判定','誤記憶の防止','安全な失敗動作'],
     next:'独立したテストデータ、失敗事例の分類、安全性と回答率の両立を比較します。関連プロジェクト：Aria / ZeroTrainAI。'
+  },
+  ariaos:{
+    num:'04 / 04',glyph:'▲',sub:'GRADUATION RESEARCH / AriaOS',
+    title:'卒業研究：自律型AIエージェント基盤「Aria」',
+    intro:'Windows上のエッジ環境で動作するマルチモーダルAIエージェントを卒業研究として開発しています。小規模モデルの役割分担、信頼できる長期記憶、限られた計算資源のスケジューリングを一つの基盤に統合することがテーマです。',
+    focuses:['小モデルの役割分担','信頼できる記憶','資源スケジューリング（AARM）','エッジ／マルチモーダル'],
+    next:'デジタルハリウッド大学の卒業研究として進行中です。各テーマの検証結果は、評価方法を整理できた段階で順次追加します。関連プロジェクト：Aria / AriaOS。'
   }
 };
 const topicButtons=[...document.querySelectorAll('.tech-node')];
@@ -259,7 +266,7 @@ function updateScene(){
   enterButton.disabled=!nearestPortal;
   nearestLabel.textContent=nearestPortal?'NEAR: '+nearestPortal.label:'NO PORTAL';
   sceneTitle.textContent=nearestPortal?nearestPortal.title:'EXPLORE THE WORLD';
-  sceneSubtitle.textContent=nearestPortal?'PRESS E / ENTER':'MOVE TO A PORTAL';
+  sceneSubtitle.textContent=nearestPortal?'PRESS E / TAP TO ENTER':'MOVE TO A PORTAL';
   portalButtons.forEach(btn=>btn.classList.toggle('active',btn.dataset.zone===nearestPortal?.id));
 }
 let slimeMotionTimer;
@@ -300,6 +307,10 @@ portalButtons.forEach(btn=>btn.addEventListener('click',()=>{
   updateScene();
   enterPortal();
 }));
+scene.addEventListener('click',event=>{
+  if(event.target.closest('button'))return;
+  enterPortal();
+});
 scene.addEventListener('keydown',event=>{
   const key=event.key.toLowerCase();
   if(event.key==='ArrowLeft'||key==='a'){event.preventDefault();moveAvatar(-7)}
