@@ -591,3 +591,6 @@ linear-gradient(180deg,#1a2a43 0%,#172139 100%);border-bottom:6px solid #0e1a30}
   .leaf,.sign-halo,.sign-glow,.sign-text{animation:none!important;will-change:auto}
   .sign-text{opacity:1}
 }
+
+/* Approved bunny-slime PNG sprite: retain aspect ratio and hard pixel edges. */
+.slime-art{object-fit:contain;image-rendering:pixelated;user-select:none;-webkit-user-drag:none}
