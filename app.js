@@ -31,7 +31,7 @@
         ['背景・課題','自動化機能が増えるほど実行・プラグイン・保存・ワークフローの境界が曖昧になり、保守が難しくなります。'],
         ['アプローチ','Runtime / Plugin / Storage / Workflow の責務を分離し、差し替え・拡張・テストを進めやすい構成を検討。'],
         ['AI/MLとの関係','学習パイプラインそのものの事例ではありませんが、長時間処理やツール実行、プラグイン拡張に必要なシステム設計の経験として掲載。'],
-        ['評価・制約','設計文書・テスト・運用ログで裏付ける必要があります。公開リポジトリのアクセス状態は、この版の作成時点で確認できていません。']
+        ['評価・制約','設計文書・テスト・運用ログで裏付ける必要があります。リポジトリは現在非公開のため、公開可能な資料を順次追加する予定です。']
       ],evidence:'設計図、ADR/RFC、公開可能なソース、テストログ、実行可能な最小構成。'},
       travel:{category:'OCR / DATA EXTRACTION',title:'TravelEasy',intro:'旅行書類の画像・文章から旅程を取り込むFlutterアプリ。文書処理と構造化データ抽出の事例。',tech:['OCR','Flutter / Dart','Parsing','Localization'],sections:[
         ['背景・課題','予約情報が複数の形式で届くため、旅行者が日付・場所・便名などを再入力する負担があります。'],
@@ -311,12 +311,17 @@ scene.addEventListener('click',event=>{
   if(event.target.closest('button'))return;
   enterPortal();
 });
-scene.addEventListener('keydown',event=>{
+document.addEventListener('keydown',event=>{
+  if(dlg.open)return;
+  const target=event.target;
+  if(target.closest('input,textarea,select'))return;
+  const rect=scene.getBoundingClientRect();
+  if(rect.bottom<=0||rect.top>=window.innerHeight)return;
   const key=event.key.toLowerCase();
   if(event.key==='ArrowLeft'||key==='a'){event.preventDefault();moveAvatar(-7)}
   else if(event.key==='ArrowRight'||key==='d'){event.preventDefault();moveAvatar(7)}
-  else if((key===' '||key==='spacebar')&&!event.target.closest('button')){event.preventDefault();hopAvatar()}
-  else if((key==='e'||event.key==='Enter')&&!event.target.closest('button')){event.preventDefault();enterPortal()}
+  else if((key===' '||key==='spacebar')&&!target.closest('button')){event.preventDefault();hopAvatar()}
+  else if((key==='e'||event.key==='Enter')&&!target.closest('button')){event.preventDefault();enterPortal()}
 });
 updateScene();
 
