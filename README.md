@@ -4,6 +4,8 @@
 
 **公開URL:** https://jacksin2031.github.io/ai-ml-portfolio-28grad/
 
+**正式姓名:** SIN LIK WANG（シンリクワン）
+
 ## コンセプト
 
 「AIをつくり、評価し、使える形へ。」
@@ -12,17 +14,19 @@
 
 ## ページ構成
 
-- **Title Screen / AI Lab:** オリジナルSVGの研究所、操作できるキャラクター
+- **Title Screen / AI Lab:** オリジナルSVGの研究所。左右移動できるキャラクターと、QUESTS／LAB／PLAYERの3つのポータル
 - **Project Quests:** 7つの開発・研究プロジェクト、分類フィルター、詳細ダイアログ
 - **Research Tech Tree:** モデル開発の自動化、LLMの長期記憶、AIの評価設計
 - **Skill Inventory:** 技術経験・今後の学習テーマ（架空のレベル数値は付けません）
 - **Player Profile:** 公開可能なプロフィール・GitHubリンク
 - **Quick View:** 装飾的なゲームシーンを省いた簡潔な表示に切替
+- **Exploration Log:** 訪問したエリアと閲覧した作品をこのブラウザのlocalStorageだけに記録。RESETで消去可能。技能・研究成果の採点ではありません。
 
 ## 操作
 
 - **START EXPLORING:** プロジェクトへスクロール
 - 研究所の左右ボタン、または研究所をフォーカスして左右キー／A・D：ピクセルキャラクターを移動
+- ポータルの近くでE／Enterを押すか、ポータルを直接クリック：QUESTS／LAB／PLAYERのエリアに移動
 - **VIEW QUEST DETAILS:** 技術詳細ダイアログ。Escで閉じる
 - Tech Tree ノード：研究内容を切り替え
 - **QUICK VIEW:** 装飾を省いた閲覧モード
@@ -37,7 +41,7 @@
 |---|---|
 | index.html | セマンティックなページ構造・オリジナルピクセルSVG |
 | styles.css | ピクセルゲーム風テーマ、レスポンシブ、アニメーション、印刷用 |
-| app.js | Quest／Modal／Tech Tree／Avatar／Quick View |
+| app.js | Quest／Modal／Tech Tree／Avatar／Portals／Local Progress／Quick View |
 | favicon.svg | オリジナルピクセルfavicon |
 | .nojekyll | GitHub Pages 用設定 |
 
