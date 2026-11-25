@@ -31,7 +31,7 @@
         ['背景・課題','自動化機能が増えるほど実行・プラグイン・保存・ワークフローの境界が曖昧になり、保守が難しくなります。'],
         ['アプローチ','Runtime / Plugin / Storage / Workflow の責務を分離し、差し替え・拡張・テストを進めやすい構成を検討。'],
         ['AI/MLとの関係','学習パイプラインそのものの事例ではありませんが、長時間処理やツール実行、プラグイン拡張に必要なシステム設計の経験として掲載。'],
-        ['評価・制約','設計文書・テスト・運用ログで裏付ける必要があります。リポジトリは現在非公開のため、公開可能な資料を順次追加する予定です。']
+        ['評価・制約','設計文書・テスト・運用ログで裏付ける必要があります。リポジトリはGitHubで公開中です。']
       ],evidence:'設計図、ADR/RFC、公開可能なソース、テストログ、実行可能な最小構成。'},
       travel:{category:'OCR / DATA EXTRACTION',title:'TravelEasy',intro:'旅行書類の画像・文章から旅程を取り込むFlutterアプリ。文書処理と構造化データ抽出の事例。',tech:['OCR','Flutter / Dart','Parsing','Localization'],sections:[
         ['背景・課題','予約情報が複数の形式で届くため、旅行者が日付・場所・便名などを再入力する負担があります。'],
@@ -44,7 +44,13 @@
         ['アプローチ','御茶ノ水の橋・川・鉄道・道路を調べ、視覚レイヤーと移動可能領域を分けるシーン設計を進めています。'],
         ['エンジニアリングの視点','見た目の再現だけでなく、論理的な位置関係と操作時の矛盾を減らすことを重視。'],
         ['位置づけ','AI/MLの直接的な成果ではなく、ユーザー向け体験設計と実装の補助的な事例です。']
-      ],evidence:'操作デモ、移動可能レイヤーの図、実際のゲーム画面、展示時の成果。'}
+      ],evidence:'操作デモ、移動可能レイヤーの図、実際のゲーム画面、展示時の成果。'},
+      elyndra:{category:'AI × TRPG / WEB GAME',title:'Elyndra',intro:'AIが物語を提案し、ゲームエンジンが世界の判定と記憶を担う、ブラウザで遊べる異世界TRPG。',tech:['LLM','Game Engine','World Simulation','JavaScript'],sections:[
+        ['背景・課題','AIにゲームマスターを任せると、生成の自由さと引き換えに、過去の出来事や世界のルールが後から書き換わってしまう問題があります。'],
+        ['アプローチ','「AI proposes. Game Engine decides. Database remembers.」を原則に、AIの提案を決定論的なエンジン（D20判定、能力、経済など）が裁定し、世界の事実は台帳（World Ledger）で管理する構成にしました。'],
+        ['設計のポイント','世界の種（Seed、Blueprint、Constitution）から正典（Canon）と歴史を段階的に構築し、因果と知識の境界を分けることで、AIが読んだ隠し情報をキャラクターが知っていることにしない設計にしています。'],
+        ['現在の位置づけ','公開中のブラウザゲーム（v0.61.3）。4言語対応、複数のAIプロバイダ対応、ローカル保存（IndexedDB）に対応しています。']
+      ],evidence:'公開リポジトリ（GitHub：Elyndra）と、ブラウザでそのまま遊べるデモ（a24dc523.github.io/Elyndra）で確認できます。'}
     };
 
 const quests=[...document.querySelectorAll('.quest-card')];
@@ -213,7 +219,7 @@ function persistProgress(){
 function updateProgress(){
   document.getElementById('zoneProgressText').textContent=visitedAreas.size+' / 3';
   document.getElementById('zoneProgress').value=visitedAreas.size;
-  document.getElementById('questProgressText').textContent=viewedQuests.size+' / 7';
+  document.getElementById('questProgressText').textContent=viewedQuests.size+' / 8';
   document.getElementById('questProgress').value=viewedQuests.size;
   document.querySelectorAll('.scene-portal').forEach(btn=>btn.classList.toggle('visited',visitedAreas.has(btn.dataset.zone)));
   quests.forEach(card=>{
