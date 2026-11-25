@@ -31,7 +31,7 @@
         ['背景・課題','自動化機能が増えるほど実行・プラグイン・保存・ワークフローの境界が曖昧になり、保守が難しくなります。'],
         ['アプローチ','Runtime / Plugin / Storage / Workflow の責務を分離し、差し替え・拡張・テストを進めやすい構成を検討。'],
         ['AI/MLとの関係','学習パイプラインそのものの事例ではありませんが、長時間処理やツール実行、プラグイン拡張に必要なシステム設計の経験として掲載。'],
-        ['評価・制約','設計文書・テスト・運用ログで裏付ける必要があります。リポジトリはGitHubで公開中です。']
+        ['評価・制約','開発は現在中断しています。設計文書・テスト・運用ログで裏付ける必要があります。リポジトリはGitHubで公開中です。']
       ],evidence:'設計図、ADR/RFC、公開可能なソース、テストログ、実行可能な最小構成。'},
       travel:{category:'OCR / DATA EXTRACTION',title:'TravelEasy',intro:'旅行書類の画像・文章から旅程を取り込むFlutterアプリ。文書処理と構造化データ抽出の事例。',tech:['OCR','Flutter / Dart','Parsing','Localization'],sections:[
         ['背景・課題','予約情報が複数の形式で届くため、旅行者が日付・場所・便名などを再入力する負担があります。'],
@@ -50,7 +50,7 @@
         ['アプローチ','「AI proposes. Game Engine decides. Database remembers.」を原則に、AIの提案を決定論的なエンジン（D20判定、能力、経済など）が裁定し、世界の事実は台帳（World Ledger）で管理する構成にしました。'],
         ['設計のポイント','世界の種（Seed、Blueprint、Constitution）から正典（Canon）と歴史を段階的に構築し、因果と知識の境界を分けることで、AIが読んだ隠し情報をキャラクターが知っていることにしない設計にしています。'],
         ['現在の位置づけ','公開中のブラウザゲーム（v0.61.3）。4言語対応、複数のAIプロバイダ対応、ローカル保存（IndexedDB）に対応しています。']
-      ],evidence:'公開リポジトリ（GitHub：Elyndra）と、ブラウザでそのまま遊べるデモ（a24dc523.github.io/Elyndra）で確認できます。'},
+      ],evidence:'公開リポジトリ（GitHub：Elyndra）と、ブラウザでそのまま遊べるデモ（jacksin2031.github.io/Elyndra）で確認できます。'},
       arisu:{category:'FAN GAME / AI-ASSISTED SCRIPT',title:'きみと、しおりのない一日',intro:'VTuber「物述有栖」を題材にした、非公式の短編ブラウザノベル。AIで人格の特徴を抽出し、劇本制作に活かしています。',tech:['JavaScript','Persona Extraction','AI Scriptwriting','WebGL'],sections:[
         ['背景・課題','好きなVTuberの誕生日に合わせて、ファンとして形に残るものを作りたいと考えました。'],
         ['アプローチ','台本形式のシナリオ、分岐選択、セーブ機能を持つノベルエンジンを実装しました。劇本は、AIで配信の字幕からキャラクターの口調や人格の特徴を抽出し、それをもとに執筆しています。'],
