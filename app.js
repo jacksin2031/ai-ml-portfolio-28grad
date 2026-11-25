@@ -50,7 +50,13 @@
         ['アプローチ','「AI proposes. Game Engine decides. Database remembers.」を原則に、AIの提案を決定論的なエンジン（D20判定、能力、経済など）が裁定し、世界の事実は台帳（World Ledger）で管理する構成にしました。'],
         ['設計のポイント','世界の種（Seed、Blueprint、Constitution）から正典（Canon）と歴史を段階的に構築し、因果と知識の境界を分けることで、AIが読んだ隠し情報をキャラクターが知っていることにしない設計にしています。'],
         ['現在の位置づけ','公開中のブラウザゲーム（v0.61.3）。4言語対応、複数のAIプロバイダ対応、ローカル保存（IndexedDB）に対応しています。']
-      ],evidence:'公開リポジトリ（GitHub：Elyndra）と、ブラウザでそのまま遊べるデモ（a24dc523.github.io/Elyndra）で確認できます。'}
+      ],evidence:'公開リポジトリ（GitHub：Elyndra）と、ブラウザでそのまま遊べるデモ（a24dc523.github.io/Elyndra）で確認できます。'},
+      arisu:{category:'FAN GAME / AI DIALOGUE',title:'きみと、しおりのない一日',intro:'VTuber「物述有栖」を題材にした、非公式の短編ブラウザノベル。人格データを用いたAI対話を組み込んでいます。',tech:['JavaScript','AI Dialogue','Persona Data','WebGL'],sections:[
+        ['背景・課題','好きなVTuberの誕生日に合わせて、ファンとして形に残るものを作りたいと考えました。'],
+        ['アプローチ','台本形式のシナリオ、分岐選択、セーブ機能を持つノベルエンジンを実装し、キャラクターの人格データを用いたAI対話と3Dモデルの表示を組み合わせました。'],
+        ['設計のポイント','3Dモデルはブラウザ内でのみ読み込み、サーバーへ送信しない設計にしました。保存データもローカルに閉じています。'],
+        ['位置づけ','非公式の二次創作です。すべての台詞と出来事はフィクションです。']
+      ],evidence:'公開中のゲーム（arisu-tea-party.vercel.app）で遊べます。開始には3Dモデルフォルダの読み込みが必要です。'}
     };
 
 const quests=[...document.querySelectorAll('.quest-card')];
@@ -219,7 +225,7 @@ function persistProgress(){
 function updateProgress(){
   document.getElementById('zoneProgressText').textContent=visitedAreas.size+' / 3';
   document.getElementById('zoneProgress').value=visitedAreas.size;
-  document.getElementById('questProgressText').textContent=viewedQuests.size+' / 8';
+  document.getElementById('questProgressText').textContent=viewedQuests.size+' / 9';
   document.getElementById('questProgress').value=viewedQuests.size;
   document.querySelectorAll('.scene-portal').forEach(btn=>btn.classList.toggle('visited',visitedAreas.has(btn.dataset.zone)));
   quests.forEach(card=>{

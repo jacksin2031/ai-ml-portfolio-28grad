@@ -136,6 +136,7 @@ linear-gradient(180deg,#1a2a43 0%,#172139 100%);border-bottom:6px solid #0e1a30}
 .art-zero{background:linear-gradient(160deg,#435494,#253560)}
 .art-memory{background:linear-gradient(160deg,#477c85,#31546f)}
 .art-elyndra{background:linear-gradient(160deg,#35685c,#223f4a)}
+.art-arisu{background:linear-gradient(160deg,#9c6b84,#54404f)}
 .art-colorquake{background:linear-gradient(160deg,#8c4a7a,#4a2a5e)}
 .art-aigi{background:linear-gradient(160deg,#b76a8c,#6e3455)}
 .quest-art:before,.quest-art:after{position:absolute;content:"";background:#f7eac133;width:52px;height:52px;clip-path:polygon(0 0,80% 0,80% 20%,100% 20%,100% 100%,0 100%)}
